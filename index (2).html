@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Camila Gualdría - Física Mecánica & Dinámica Avanzada | CUN</title>
+    <style>
+        :root {
+            --cun-green-dark: #007B3E;
+            --cun-green-accent: #7CB228;
+            --cun-green-light-bg: #F4F9F4;
+            --cun-card-bg: #FFFFFF;
+            --text-dark: #1A3323;
+            --text-muted: #4A6B53;
+            --border-color: #C8E6C9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cun-green-light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #004D25, var(--cun-green-dark));
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--cun-green-accent);
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cun-logo {
+            background-color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            max-width: 200px;
+            height: auto;
+        }
+
+        header h1 {
+            margin: 10px 0 0 0;
+            font-size: 2.3rem;
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 5px 0 0 0;
+            color: #E8F5E9;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        section {
+            background: var(--cun-card-bg);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 123, 62, 0.08);
+            border: 1px solid var(--border-color);
+        }
+        
+        h2 {
+            color: var(--cun-green-dark);
+            border-bottom: 2px solid var(--cun-green-accent);
+            padding-bottom: 10px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .info-box {
+            background: var(--cun-green-light-bg);
+            padding: 18px;
+            border-left: 4px solid var(--cun-green-dark);
+            border-radius: 6px;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: var(--cun-green-dark);
+        }
+
+        .schedule-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #E8F5E9;
+            border: 1px solid var(--cun-green-accent);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .puzzle-box {
+            background: var(--cun-green-light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .puzzle-box input[type="number"] {
+            padding: 9px 12px;
+            font-size: 1rem;
+            width: 130px;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            background: #ffffff;
+            color: var(--text-dark);
+        }
+
+        .puzzle-box button {
+            padding: 10px 18px;
+            font-size: 1rem;
+            background-color: var(--cun-green-dark);
+            color: #ffffff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .puzzle-box button:hover {
+            background-color: var(--cun-green-accent);
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            margin-top: 12px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+
+        .success { color: var(--cun-green-dark); }
+        .error { color: #D32F2F; }
+
+        /* Simulación GPS Canvas */
+        #gps-canvas {
+            background: #0A2213;
+            display: block;
+            margin: 15px auto;
+            border: 3px solid var(--cun-green-accent);
+            border-radius: 10px;
+            cursor: crosshair;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .cortes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .corte-card {
+            background: var(--cun-green-light-bg);
+            border-left: 5px solid var(--cun-green-accent);
+            padding: 15px 20px;
+            border-radius: 6px;
+        }
+
+        .contact-info {
+            text-align: center;
+            background: linear-gradient(135deg, #004D25, var(--cun-green-dark));
+            color: white;
+        }
+
+        .contact-info h2 {
+            color: #ffffff;
+            justify-content: center;
+            border-bottom-color: var(--cun-green-accent);
+        }
+
+        .contact-info a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 28px;
+            background-color: var(--cun-green-accent);
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .contact-info a:hover {
+            background-color: #ffffff;
+            color: var(--cun-green-dark);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #003318;
+            color: #C8E6C9;
+            font-size: 0.9rem;
+        }
+
+        @media(max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            #gps-canvas { width: 100%; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="header-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxHKhiSvN8Cf3exqRZ87nkZZX6OErYO1BNIrbuXg7VHQ&s" alt="Escudo CUN" class="cun-logo">
+            <h1>Camila Andrea Gualdría Sandoval</h1>
+            <p>Docente de Física Mecánica y Laboratorio | Asignatura: 30109</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Perfil y Detalles -->
+        <section>
+            <h2>👩🏻‍🏫 Perfil Académico & Asignatura</h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Perfil Profesional</h3>
+                    <p><strong>Licenciada en Física</strong> & <strong>Magíster en Educación en Tecnología</strong>.</p>
+                    <p><strong>Gustos:</strong> Un buen café ☕, desarrollo tecnológico 💻, lectura de mundos distópicos 📚 y diseño de experimentos prácticos 🔬.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Datos de la Clase</h3>
+                    <p><strong>Horario:</strong> Viernes de 11:30 am a 1:00 pm</p>
+                    <p><strong>Lugar:</strong> Sede J - Salón 705</p>
+                    <p><strong>Correo:</strong> camila_gualdria@cun.edu.co</p>
+                </div>
+            </div>
+            
+            <div class="schedule-box">
+                🟢 <strong>¡Bienvenido a bordo!</strong> "La física no es solo fórmulas, es la herramienta para entender e innovar en el mundo real."
+            </div>
+        </section>
+
+        <!-- Retos Avanzados GPS y Funciones -->
+        <section>
+            <h2>🛰️ Laboratorio Virtual: Dinámicas GPS & Funciones</h2>
+            <p>Aplica conceptos avanzados de física relativista y modelado cinemático con estos retos interactivos:</p>
+            
+            <!-- Puzle 1: Corrección Relativista GPS -->
+            <div class="puzzle-box">
+                <h3>1. Desfase Relativista en Satélites GPS</h3>
+                <p>Debido a la velocidad orbital y la diferencia gravitacional, el reloj atómico de un satélite GPS se adelanta <strong>38 microsegundos (0.000038 s)</strong> cada día respecto a la Tierra.</p>
+                <p>Si la señal viaja a la velocidad de la luz (<strong>c = 300.000 km/s</strong>), ¿cuántos <strong>kilómetros de error acumulado en posición</strong> se generarían en un solo día sin la corrección relativista?</p>
+                <p><em>Fórmula: Error = c × Δt</em></p>
+                <input type="number" id="respGps" step="0.1" placeholder="Ej: 10.5"> km
+                <button onclick="validarGPS()">Verificar Error</button>
+                <div id="feedbackGps" class="feedback"></div>
+            </div>
+
+            <!-- Puzle 2: Funciones de Trayectoria -->
+            <div class="puzzle-box">
+                <h3>2. Cinemática con Funciones x(t)</h3>
+                <p>Un sensor registra la posición de un objeto mediante la función cuadrática:</p>
+                <p style="text-align: center; font-size: 1.3rem; color: var(--cun-green-dark);"><strong>x(t) = 3t² + 5t + 2</strong></p>
+                <p>Donde <em>x</em> representa la posición en metros y <em>t</em> el tiempo en segundos. ¿En qué segundo (t > 0) el objeto alcanza una distancia de <strong>50 metros</strong>?</p>
+                <input type="number" id="respFunc" placeholder="Ej: 3"> segundos
+                <button onclick="validarFuncion()">Resolver Ecuación</button>
+                <div id="feedbackFunc" class="feedback"></div>
+            </div>
+
+            <!-- Simulación Interactiva GPS -->
+            <div class="puzzle-box">
+                <h3>3. Simulador Interactivo: Trilateración GPS en Tiempo Real</h3>
+                <p>Haz clic en el panel del radar para desplazar el receptor GPS y observar cómo se recalcula la distancia respecto a los tres satélites en tiempo real:</p>
+                <canvas id="gps-canvas" width="600" height="300"></canvas>
+                <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">
+                    📍 Haz clic en cualquier parte del mapa para cambiar las coordenadas del receptor.
+                </p>
+            </div>
+        </section>
+
+        <!-- Plan de Evaluación CUN -->
+        <section>
+            <h2>📅 Plan de Evaluación Semestral</h2>
+            <div class="cortes-container">
+                <div class="corte-card">
+                    <strong>🟢 Primer Corte (30%) - Fundamentación</strong>
+                    <ul>
+                        <li>Semana 4: Quiz 1 (10%)</li>
+                        <li>Semana 5: Entrega de la idea del proyecto grupal (5%)</li>
+                        <li>Semana 6: Parcial 1 (15%)</li>
+                    </ul>
+                </div>
+                <div class="corte-card">
+                    <strong>🟢 Segundo Corte (30%) - Desarrollo de Proyecto y Debate</strong>
+                    <ul>
+                        <li>Semana 7: Mesa de debate avanzada (6%)</li>
+                        <li>Semana 9: Ajustes de proyecto y Simulación de Pitch (24%)</li>
+                    </ul>
+                </div>
+                <div class="corte-card">
+                    <strong>🟢 Tercer Corte (40%) - Cierre y Pitch Final</strong>
+                    <ul>
+                        <li>Semana 12: Pitch grupal final (30% de la nota final)</li>
+                        <li>Semana 13: Quiz 2 (6%)</li>
+                        <li>Semana 15: Autoevaluación y Coevaluación (4%)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section class="contact-info">
+            <h2>✉️ Contacto Directo</h2>
+            <p>¿Tienes preguntas sobre las ecuaciones, el proyecto o recomendaciones de lecturas distópicas?</p>
+            <p style="font-size: 1.2rem; font-weight: bold;">camila_gualdria@cun.edu.co</p>
+            <a href="mailto:camila_gualdria@cun.edu.co">Enviar correo a la Profesora Camila</a>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Camila Andrea Gualdría Sandoval | Corporación Unificada Nacional de Educación Superior (CUN)</p>
+    </footer>
+
+    <!-- Scripts de Interactividad -->
+    <script>
+        function validarGPS() {
+            const val = parseFloat(document.getElementById('respGps').value);
+            const fb = document.getElementById('feedbackGps');
+            if (val === 11.4) {
+                fb.className = "feedback success";
+                fb.innerHTML = "¡Excelente! 🎯 Sin las correcciones de la Relatividad, el GPS tendría un margen de error acumulado mayor a 11 km diarios.";
+            } else if (isNaN(val)) {
+                fb.className = "feedback error";
+                fb.innerHTML = "Por favor, ingresa un número.";
+            } else {
+                fb.className = "feedback error";
+                fb.innerHTML = "Incorrecto. Multiplica c = 300.000 km/s por Δt = 0.000038 s.";
+            }
+        }
+
+        function validarFuncion() {
+            const val = parseFloat(document.getElementById('respFunc').value);
+            const fb = document.getElementById('feedbackFunc');
+            if (val === 3) {
+                fb.className = "feedback success";
+                fb.innerHTML = "¡Correcto! 📐 Remplazando t = 3: 3(3)² + 5(3) + 2 = 27 + 15 + 2 = 50 metros.";
+            } else if (isNaN(val)) {
+                fb.className = "feedback error";
+                fb.innerHTML = "Por favor, ingresa un número.";
+            } else {
+                fb.className = "feedback error";
+                fb.innerHTML = "Sigue intentando. Iguala 3t² + 5t + 2 = 50, despeja a 3t² + 5t - 48 = 0 y resuelve para t.";
+            }
+        }
+
+        const canvas = document.getElementById('gps-canvas');
+        const ctx = canvas.getContext('2d');
+        const sats = [{x: 120, y: 60}, {x: 480, y: 60}, {x: 300, y: 240}];
+        let userPos = {x: 300, y: 140};
+
+        function drawGPS() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = "rgba(124, 178, 40, 0.2)";
+            ctx.lineWidth = 1;
+            for(let i = 0; i < canvas.width; i += 40) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+            }
+            for(let j = 0; j < canvas.height; j += 40) {
+                ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke();
+            }
+
+            sats.forEach((sat, index) => {
+                let dist = Math.hypot(userPos.x - sat.x, userPos.y - sat.y);
+
+                ctx.beginPath();
+                ctx.arc(sat.x, sat.y, dist, 0, Math.PI * 2);
+                ctx.strokeStyle = "rgba(124, 178, 40, 0.4)";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(sat.x, sat.y, 8, 0, Math.PI * 2);
+                ctx.fillStyle = "#7CB228";
+                ctx.fill();
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "12px sans-serif";
+                ctx.fillText(`Satélite CUN-${index + 1}`, sat.x - 35, sat.y - 12);
+            });
+
+            ctx.beginPath();
+            ctx.arc(userPos.x, userPos.y, 7, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffffff";
+            ctx.fill();
+            ctx.strokeStyle = "#7CB228";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            ctx.fillStyle = "#7CB228";
+            ctx.font = "bold 13px sans-serif";
+            ctx.fillText("📍 Receptor GPS", userPos.x + 12, userPos.y + 5);
+        }
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            userPos.x = e.clientX - rect.left;
+            userPos.y = e.clientY - rect.top;
+            drawGPS();
+        });
+
+        drawGPS();
+    </script>
+</body>
+</html>
